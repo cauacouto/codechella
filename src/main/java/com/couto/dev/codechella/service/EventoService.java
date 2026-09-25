@@ -1,5 +1,6 @@
 package com.couto.dev.codechella.service;
 
+import com.couto.dev.codechella.Enums.TipoEvento;
 import com.couto.dev.codechella.dto.EventoDto;
 import com.couto.dev.codechella.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,11 @@ public class EventoService {
                 })
                 .map(EventoDto::toDto);
 
+    }
+
+    public Flux<EventoDto> obterPorTipo(String tipo) {
+        TipoEvento tipoEvento = TipoEvento.valueOf(tipo.toUpperCase());
+         return repository.findByTipo(tipoEvento)
+                 .map(EventoDto::toDto);
     }
 }
