@@ -39,6 +39,13 @@ public class EventoController {
     }
 
 
+    @GetMapping("{id}/traduzir/{idioma}")
+    public Mono<String> obterTraducao(@PathVariable Long id,@PathVariable String idioma){
+        return service.obterTraducao(id,idioma);
+
+    }
+
+
     @GetMapping(value = "/categoria/{tipo}",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<EventoDto> obterPorTipo(@PathVariable String tipo){
         return Flux.merge(service.obterPorTipo(tipo),eventoSink.asFlux())
