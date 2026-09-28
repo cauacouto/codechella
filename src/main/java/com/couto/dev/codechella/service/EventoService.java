@@ -2,6 +2,7 @@ package com.couto.dev.codechella.service;
 
 import com.couto.dev.codechella.Enums.TipoEvento;
 import com.couto.dev.codechella.dto.EventoDto;
+import com.couto.dev.codechella.http.TraducaoDeTextos;
 import com.couto.dev.codechella.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,8 @@ public class EventoService {
 
     @Autowired
     private EventoRepository repository;
+    @Autowired
+    private TraducaoDeTextos traducaoDeTextos;
 
 
     public Flux<EventoDto> obeterTodos(){
@@ -58,5 +61,10 @@ public class EventoService {
         TipoEvento tipoEvento = TipoEvento.valueOf(tipo.toUpperCase());
          return repository.findByTipo(tipoEvento)
                  .map(EventoDto::toDto);
+    }
+
+    public Mono<String> obterTraducao(Long id, String idioma) {
+        return repository.findById(id)
+                .flatMap(e -> traducaoDeTextos.obterTraducao(e.getDescricao(),idioma));
     }
 }
