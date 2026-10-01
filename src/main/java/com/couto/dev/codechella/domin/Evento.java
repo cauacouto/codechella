@@ -2,6 +2,7 @@ package com.couto.dev.codechella.domin;
 
 import com.couto.dev.codechella.Enums.TipoEvento;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
@@ -10,10 +11,19 @@ import java.time.LocalDate;
 public class Evento {
 
     @Id
+    @Column("id")
     private Long id;
+
+    @Column("tipo")
     private TipoEvento tipo;
+
+    @Column("nome")
     private String nome;
+
+    @Column("data")
     private LocalDate data;
+
+    @Column("descricao")
     private String descricao;
 
 
