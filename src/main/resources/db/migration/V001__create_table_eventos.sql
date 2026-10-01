@@ -1,9 +1,8 @@
-create table eventos (
- id bigserial not null ,
-    tipo varchar(30) not null,
-    nome varchar(100) not null,
-    data date,
-    descricao varchar(200) not null ,
-
-    primary key (id)
+CREATE TABLE IF NOT EXISTS "eventos" (
+    "id" BIGSERIAL NOT NULL,
+    "tipo" VARCHAR(30) NOT NULL,
+    "nome" VARCHAR(100) NOT NULL,
+    "data" DATE,
+    "descricao" VARCHAR(200) NOT NULL,
+    PRIMARY KEY ("id")
 );
