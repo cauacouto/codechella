@@ -2,14 +2,13 @@ package com.couto.dev.codechella.controller;
 
 import com.couto.dev.codechella.dto.EventoDto;
 import com.couto.dev.codechella.service.EventoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks;
 
-import java.awt.*;
 import java.time.Duration;
 
 @RestController
@@ -53,6 +52,7 @@ public class EventoController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<EventoDto> cadastrar(@RequestBody EventoDto dto){
         return service.cadastrar(dto)
                 .doOnSuccess(e -> eventoSink.tryEmitNext(e));
