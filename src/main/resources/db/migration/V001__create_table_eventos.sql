@@ -1,4 +1,4 @@
-create table eventos (
+create table "eventos" (
  id bigserial not null ,
     tipo varchar(30) not null,
     nome varchar(100) not null,
